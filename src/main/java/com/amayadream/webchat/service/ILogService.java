@@ -19,4 +19,5 @@ public interface ILogService {
     boolean delete(String id);
     boolean deleteThisUser(String userid);
     boolean deleteAll();
+    int getLogCount(String userid);
 }

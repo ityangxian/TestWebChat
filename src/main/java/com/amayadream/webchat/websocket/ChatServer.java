@@ -96,7 +96,8 @@ public class ChatServer {
     public void broadcast(String message){
         for(ChatServer chat: webSocketSet){
             try {
-                chat.session.getBasicRemote().sendText(message);
+                chat.session.getBasicRemote().sendText(message); // 同步消息发送,阻塞式
+                // chat.session.getAsyncRemote().sendText(message); // 异步消息发送,非阻塞式
             } catch (IOException e) {
                 e.printStackTrace();
                 continue;

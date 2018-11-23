@@ -330,7 +330,6 @@
             <div style="height:540px;font-size:20px;font-family:Arial">
                 <div id="welcome">
                     <span style="font-size:40px;font-family:Arial;color:red">五子棋<br/></span>
-                    <span style="font-size:15px;font-family:Arial;text-align:right;">Author:<a href="http://weibo.com/yssss1980">@殷山</a></span>
                 </div>
 
                 <hr/>

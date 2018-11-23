@@ -21,8 +21,6 @@
         <div class="am-tabs am-margin" data-am-tabs>
             <ul class="am-tabs-nav am-nav am-nav-tabs">
                 <li class="am-active"><a href="#tab1">基本设置</a></li>
-                <li><a href="#tab2">修改头像</a></li>
-                <li><a href="#tab3">修改密码</a></li>
             </ul>
 
             <div class="am-tabs-bd">
@@ -96,64 +94,6 @@
                         </div>
                     </form>
                 </div>
-
-                <div class="am-tab-panel am-fade" id="tab2">
-                    <form class="am-form am-form-horizontal" style="text-align: center;">
-                        <div style="text-align: center;margin-bottom: 10px">
-                            <img class="am-circle" src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/1000/h/1000/q/80" width="140" height="140" alt="Amayadream"/>
-                        </div>
-                        <div class="am-form-group am-form-file">
-                            <button type="button" class="am-btn am-btn-secondary am-btn-sm">
-                                <i class="am-icon-cloud-upload"></i> 选择要上传的文件</button>
-                            <input id="doc-form-file" type="file" multiple>
-                        </div>
-                        <div id="file-list"></div>
-                        <button class="am-btn am-round am-btn-success"><span class="am-icon-upload"></span> 上传头像</button>
-                        <script>
-                            $(function() {
-                                $('#doc-form-file').on('change', function() {
-                                    var fileNames = '';
-                                    $.each(this.files, function() {
-                                        fileNames += '<span class="am-badge">' + this.name + '</span> ';
-                                    });
-                                    $('#file-list').html(fileNames);
-                                });
-                            });
-                        </script>
-                    </form>
-                </div>
-
-                <div class="am-tab-panel am-fade" id="tab3">
-                    <form class="am-form am-form-horizontal">
-                        <div class="am-form-group">
-                            <label for="password1" class="am-u-sm-2 am-form-label">原密码</label>
-                            <div class="am-u-sm-10">
-                                <input type="password" id="password1" required placeholder="请输入原密码...">
-                            </div>
-                        </div>
-
-                        <div class="am-form-group">
-                            <label for="password2" class="am-u-sm-2 am-form-label">新密码</label>
-                            <div class="am-u-sm-10">
-                                <input type="password" id="password2" required placeholder="请输入新密码...">
-                            </div>
-                        </div>
-
-                        <div class="am-form-group">
-                            <label for="password3" class="am-u-sm-2 am-form-label">新密码</label>
-                            <div class="am-u-sm-10">
-                                <input type="password" id="password3" required placeholder="请确认新密码...">
-                            </div>
-                        </div>
-
-                        <div class="am-form-group">
-                            <div class="am-u-sm-10 am-u-sm-offset-2">
-                                <button type="submit" class="am-btn am-round am-btn-success"><span class="am-icon-send"></span> 提交修改</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-
             </div>
         </div>
 

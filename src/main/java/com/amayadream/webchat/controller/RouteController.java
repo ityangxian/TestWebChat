@@ -27,9 +27,14 @@ public class RouteController {
         return "help";
     }
 
-    @RequestMapping(value = "/system")
+    @RequestMapping(value = "/system-setting")
     public String system() {
         return "system-setting";
+    }
+
+    @RequestMapping("/five-chess")
+    public String fiveChess() {
+        return "five-chess";
     }
 
 }

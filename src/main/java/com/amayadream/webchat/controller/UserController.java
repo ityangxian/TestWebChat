@@ -38,8 +38,10 @@ public class UserController {
      * 聊天主页
      */
     @RequestMapping(value = "chat")
-    public ModelAndView getIndex() {
+    public ModelAndView getIndex(@ModelAttribute("userid") String sessionId) {
         ModelAndView view = new ModelAndView("index");
+        user = userService.selectUserByUserid(sessionId);
+        view.addObject("user", user);
         return view;
     }
 
@@ -146,6 +148,19 @@ public class UserController {
     }
 
     /**
+     * 获取头像地址
+     */
+    @RequestMapping("/{userid}/getHeadPath")
+    @ResponseBody
+    public User getHeadPath(@PathVariable String userid) {
+        user = userService.selectUserByUserid(userid);
+        if (user == null) {
+            return null;
+        }
+        return user;
+    }
+
+    /**
      * 获取用户头像
      *
      * @param userid
@@ -168,7 +183,6 @@ public class UserController {
             outputStream.flush();
             outputStream.close();
             inputStream.close();
-            outputStream = null;
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {

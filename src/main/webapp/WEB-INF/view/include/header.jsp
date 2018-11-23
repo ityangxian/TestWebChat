@@ -14,8 +14,9 @@
     <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
         <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
             <li class="am-dropdown" data-am-dropdown>
-                <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
-                    ${userid} <span class="am-icon-caret-down"></span>
+                <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:void(0);">
+                    <img class="am-circle" src="" width="30" height="30"/>
+                    &nbsp;&nbsp;${userid} <span class="am-icon-caret-down"></span>
                 </a>
                 <ul class="am-dropdown-content">
                     <li><a href="${ctx}/${userid}"><span class="am-icon-user"></span> 资料</a></li>
@@ -25,4 +26,10 @@
             </li>
         </ul>
     </div>
+    <script>
+        $.get("${ctx}/${userid}/getHeadPath",function (data) {
+            var headPath = data.profilehead;
+            $("img:first").attr("src", "${ctx}/" + headPath);
+        })
+    </script>
 </header>

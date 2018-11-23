@@ -18,8 +18,10 @@ import java.util.List;
 @Service(value = "logService")
 public class LogServiceImpl implements ILogService {
 
-    @Resource private ILogDao logDao;
-    @Resource private Log log;
+    @Resource
+    private ILogDao logDao;
+    @Resource
+    private Log log;
 
     @Override
     public List<Log> selectAll(int page, int pageSize) {
@@ -28,25 +30,20 @@ public class LogServiceImpl implements ILogService {
 
     @Override
     public List<Log> selectLogByUserid(String userid, int page, int pageSize) {
-        int start = 1;
-        int end = pageSize;
-        if(page != 1) {
-            start = pageSize * (page - 1) + 1;
-            end = pageSize * page;
-        }
-        return logDao.selectLogByUserid(userid, start, end);
+        int start = (page - 1) * pageSize;
+        return logDao.selectLogByUserid(userid, start, pageSize);
     }
 
     @Override
     public int selectCount(int pageSize) {
         int pageCount = Integer.parseInt(logDao.selectCount().getUserid());
-        return pageCount % pageSize == 0 ? pageCount/pageSize : pageCount/pageSize + 1;
+        return pageCount % pageSize == 0 ? pageCount / pageSize : pageCount / pageSize + 1;
     }
 
     @Override
     public int selectCountByUserid(String userid, int pageSize) {
         int pageCount = Integer.parseInt(logDao.selectCountByUserid(userid).getUserid());
-        return pageCount % pageSize == 0 ? pageCount/pageSize : pageCount/pageSize + 1;
+        return pageCount % pageSize == 0 ? pageCount / pageSize : pageCount / pageSize + 1;
     }
 
 
@@ -69,5 +66,10 @@ public class LogServiceImpl implements ILogService {
     @Override
     public boolean deleteAll() {
         return logDao.deleteAll();
+    }
+
+    @Override
+    public int getLogCount(String userid) {
+        return Integer.parseInt(logDao.selectCountByUserid(userid).getUserid());
     }
 }

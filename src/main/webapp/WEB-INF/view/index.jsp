@@ -159,6 +159,13 @@
     }
 
     /**
+     * 关闭窗口或刷新时关闭连接,防止后台报错
+     */
+    window.onbeforeunload = function () {
+        closeConnection();
+    };
+
+    /**
      * 关闭连接
      */
     function closeConnection() {
