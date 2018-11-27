@@ -103,8 +103,9 @@ public class PoolManager {
      */
     public static Connection getConnection() {
         Connection conn = null;
-        if(connectionPool == null)
+        if(connectionPool == null) {
             startPool();
+        }
         try {
             conn = DriverManager.getConnection("jdbc:apache:commons:dbcp:dbpool");
         } catch (SQLException e) {

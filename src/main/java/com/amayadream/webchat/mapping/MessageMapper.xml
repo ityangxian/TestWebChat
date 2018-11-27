@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.amayadream.webchat.dao.IMessageDao">
+
+    <resultMap id="BaseResultMap" type="com.amayadream.webchat.pojo.Message">
+        <id column="MID" property="mid" jdbcType="INTEGER"/>
+        <result column="USERID" property="userid" jdbcType="VARCHAR"/>
+        <result column="TIME" property="time" jdbcType="DATE"/>
+        <result column="TO" property="to" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    MID, USERID, TIME, TO
+  </sql>
+
+    <select id="selectMessageByUserid" resultMap="BaseResultMap">
+        SELECT *
+        FROM `message`
+        WHERE `userid` = #{userid, jdbcType=VARCHAR}
+        ORDER BY TIME DESC
+        LIMIT #{offset}, #{limit}
+  </select>
+
+    <insert id="insert" parameterType="com.amayadream.webchat.pojo.Message">
+    INSERT INTO `message` (USERID, TIME, TO)
+    VALUES (#{userid, jdbcType=VARCHAR}, #{time, jdbcType=DATE}, #{to, jdbcType=VARCHAR}
+  </insert>
+
+    <delete id="delete" parameterType="string">
+    DELETE FROM `message`
+    WHERE ID = #{mid, jdbcType=VARCHAR}
+  </delete>
+
+    <delete id="deleteThisUser" parameterType="string">
+    DELETE FROM `message`
+    WHERE `userid` = #{userid, jdbcType=VARCHAR}
+  </delete>
+
+</mapper>

@@ -23,7 +23,9 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
         //获取URI后缀
         String requestUri = request.getServletPath();
 
-        if(requestUri.equalsIgnoreCase("/"))    return true;
+        if(requestUri.equalsIgnoreCase("/")) {
+            return true;
+        }
 
         //过滤不需要拦截的地址
         for (String uri : IGNORE_URI) {
@@ -40,6 +42,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
         }
     }
 
+    @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
         super.postHandle(request, response, handler, modelAndView);
     }

@@ -2,6 +2,8 @@ package com.amayadream.webchat.websocket;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.amayadream.webchat.service.IMessageService;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.http.HttpSession;
 import javax.websocket.*;
@@ -28,6 +30,9 @@ public class ChatServer {
 
     private static List list = new ArrayList<>();   //在线列表,记录用户名称
     private static Map routetab = new HashMap<>();  //用户名和websocket的session绑定的路由表
+
+    @Autowired
+    private IMessageService messageService;
 
     /**
      * 连接建立成功调用的方法
