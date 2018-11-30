@@ -34,4 +34,22 @@ public class MessageServiceImpl implements IMessageService {
     public boolean deleteThisUser(String userid) {
         return messageDao.deleteThisUser(userid);
     }
+
+    @Override
+    public int selectCount(String userid) {
+        return Integer.parseInt(messageDao.selectCount(userid).getUserid());
+    }
+
+    @Override
+    public int selectCountByUserid(String userid, int pageSize) {
+        int pageCount = Integer.parseInt(messageDao.selectCountByUserid(userid).getUserid());
+        return pageCount % pageSize == 0 ? pageCount / pageSize : pageCount / pageSize + 1;
+    }
+
+    @Override
+    public List<Message> selectMessageGroupByTo(String userid) {
+        return messageDao.selectMessageGroupByTo(userid);
+    }
+
+
 }

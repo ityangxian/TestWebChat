@@ -5,8 +5,9 @@
     <resultMap id="BaseResultMap" type="com.amayadream.webchat.pojo.Message">
         <id column="MID" property="mid" jdbcType="INTEGER"/>
         <result column="USERID" property="userid" jdbcType="VARCHAR"/>
-        <result column="TIME" property="time" jdbcType="DATE"/>
+        <result column="TIME" property="time" jdbcType="TIMESTAMP"/>
         <result column="TO" property="to" jdbcType="VARCHAR"/>
+        <result column="CONTENT" property="content" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="Base_Column_List">
@@ -21,9 +22,24 @@
         LIMIT #{offset}, #{limit}
   </select>
 
+    <select id="selectCount" resultMap="BaseResultMap">
+    SELECT COUNT(*) USERID FROM `message`
+    WHERE `userid` = #{userid, jdbcType=VARCHAR}
+  </select>
+
+    <select id="selectCountByUserid" resultMap="BaseResultMap">
+    SELECT COUNT(*) USERID FROM `message`
+    WHERE `userid` = #{userid, jdbcType=VARCHAR}
+  </select>
+
+    <select id="selectMessageGroupByTo" resultType="com.amayadream.webchat.pojo.Message">
+        SELECT `to` FROM `message`
+        WHERE `userid`= #{userid, jdbcType=VARCHAR} GROUP BY `to`
+    </select>
+
     <insert id="insert" parameterType="com.amayadream.webchat.pojo.Message">
-    INSERT INTO `message` (USERID, TIME, TO)
-    VALUES (#{userid, jdbcType=VARCHAR}, #{time, jdbcType=DATE}, #{to, jdbcType=VARCHAR}
+    INSERT INTO `message` (`userid`, `time`, `to`, `content`)
+    VALUES (#{userid, jdbcType=VARCHAR}, #{time, jdbcType=TIMESTAMP}, #{to, jdbcType=VARCHAR}, #{content, jdbcType=VARCHAR})
   </insert>
 
     <delete id="delete" parameterType="string">

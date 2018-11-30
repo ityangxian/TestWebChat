@@ -13,14 +13,24 @@ public class Message implements Serializable {
     private String userid;  // 消息发送者
     private Date time;      // 发送时间
     private String to;      // 消息接收者
+    private String content; // 内容
 
     public Message() {
     }
 
-    public Message(String userid, Date time, String to) {
+    public Message(String userid, Date time, String to, String content) {
         this.userid = userid;
         this.time = time;
         this.to = to;
+        this.content = content;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public int getMid() {

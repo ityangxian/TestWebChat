@@ -9,7 +9,7 @@
             <li><a href="${ctx}/${userid}" class="am-cf"><span class="am-icon-book"></span> 个人信息<span
                     class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
             <li class="admin-parent">
-                <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}"><span class="am-icon-cogs"></span> 游戏
+                <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}"><span class="am-icon-gamepad"></span> 游戏
                     <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
                 <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
                     <li><a href="${ctx}/five-chess"><span class="am-icon-group"></span> 五子棋</a></li>
@@ -23,6 +23,8 @@
                     <li><a href="${ctx}/system-setting"><span class="am-icon-cog"></span> 系统设置</a></li>
                 </ul>
             </li>
+            <li><a href="${ctx}/${userid}/message"><span class="am-icon-rebel"></span> 聊天记录<span
+                    class="am-badge am-badge-secondary am-margin-right am-fr" id="chatCount">0</span></a></li>
             <li><a href="${ctx}/${userid}/log"><span class="am-icon-inbox"></span> 系统日志<span
                     class="am-badge am-badge-secondary am-margin-right am-fr" id="logCount">0</span></a></li>
             <li><a href="${ctx}/help"><span class="am-icon-globe"></span> 帮助</a></li>
@@ -42,5 +44,10 @@
     $.get("${ctx}/${userid}/getLogCount",function (data) {
         var count = data.toLocaleString();
         $("#logCount").text(count);
+    });
+
+    $.get("${ctx}/${userid}/getMessageCount",function (data) {
+        var count = data.toLocaleString();
+        $("#chatCount").text(count);
     })
 </script>

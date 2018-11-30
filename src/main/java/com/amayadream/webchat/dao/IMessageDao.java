@@ -17,4 +17,9 @@ public interface IMessageDao {
 
     boolean deleteThisUser(String userid);
 
+    Message selectCount(@Param("userid") String userid);
+
+    Message selectCountByUserid(@Param("userid") String userid);
+
+    List<Message> selectMessageGroupByTo(@Param("userid") String userid);
 }

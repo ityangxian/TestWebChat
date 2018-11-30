@@ -10,4 +10,8 @@ public interface IMessageService {
     boolean insert(Message message);
     boolean delete(String id);
     boolean deleteThisUser(String userid);
+    int selectCount(String userid);
+    int selectCountByUserid(String userid, int pageSize);
+
+    List<Message> selectMessageGroupByTo(String userid);
 }
